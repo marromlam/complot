@@ -3,7 +3,7 @@ complot
 =======
 
 .. image:: https://img.shields.io/travis/marromlam/complot.svg
-   :target: https://travis-ci.org/mramospe/complot
+   :target: https://travis-ci.org/marromlam/complot
 
 .. image:: https://img.shields.io/badge/documentation-link-blue.svg
    :target: https://marromlam.github.io/complot/
