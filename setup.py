@@ -13,7 +13,6 @@ __license__ = 'MIT License Copyright (c) 2021 Marcos Romero Lamas'
 import os
 import sys
 import setuptools
-from setuptools import setup
 import subprocess
 import textwrap
 
@@ -88,7 +87,7 @@ class CheckFormatCommand(setuptools.Command):
 # Version of the package. Before a new release is made just the version_list
 # must be changed. The options for the fourth tag are "dev", "alpha", "beta"
 # and "final".
-version_list = [0, 0, 0, 'dev', 1]
+version_list = [0, 0, 1, 'final', 1]
 
 VERSION = f"{version_list[0]}.{version_list[1]}.{version_list[2]}"
 
@@ -156,13 +155,8 @@ def setup_package():
       license=__license__,
       description='Statistical and plotting tools.',
       long_description=open('README.rst').read() + "\n\n" + __license__,
+      long_description_content_type = 'text/x-rst',
       platforms=['Linux', 'macOS', 'Windows'],
-      classifiers=['Development Status :: 0 - Production/Unstable',
-                   'Intended Audience :: Science/Research',
-                   'License :: OSI Approved :: BSD License',
-                   'Operating System :: OS Independent',
-                   'Topic :: Scientific/Engineering',
-                   ],
       keywords='statistics plotting',
       cmdclass={'check_format': CheckFormatCommand},
       package_dir={'complot': 'complot'},
@@ -170,7 +164,7 @@ def setup_package():
   )
 
   create_version_file()
-  setup(**metadata)
+  setuptools.setup(**metadata)
 
 
 if __name__ == '__main__':
