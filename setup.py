@@ -87,7 +87,7 @@ class CheckFormatCommand(setuptools.Command):
 # Version of the package. Before a new release is made just the version_list
 # must be changed. The options for the fourth tag are "dev", "alpha", "beta"
 # and "final".
-version_list = [0, 0, 1, 'final', 1]
+version_list = [0, 0, 3, 'dev', 5]
 
 VERSION = f"{version_list[0]}.{version_list[1]}.{version_list[2]}"
 
@@ -159,7 +159,8 @@ def setup_package():
       platforms=['Linux', 'macOS', 'Windows'],
       keywords='statistics plotting',
       cmdclass={'check_format': CheckFormatCommand},
-      package_dir={'complot': 'complot'},
+      include_package_data=True,
+      # package_dir={'complot': 'complot'},
       packages=['complot'],
   )
 
