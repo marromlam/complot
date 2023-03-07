@@ -1,2 +1,5 @@
-
+build/*
+dist/*
 complot.egg-info
+*.pyc
+complot/version.py

@@ -141,7 +141,11 @@ def compare_hist(reference, target, reference_weights=None,
   _reference = _reference._replace(yerr=[y * _reference_norm for y in _reference.yerr])
   _target = _target._replace(counts=_target.counts*_target_norm)
   _target = _target._replace(yerr=[y * _target_norm for y in _target.yerr])
-  pulls = compute_pulls(_reference.counts, _target.counts, *_target.yerr)
+  _err = [
+          np.sqrt(_reference.yerr[0]**2, _target.yerr[0]**2),
+          np.sqrt(_reference.yerr[1]**2, _target.yerr[1]**2)
+  ]
+  pulls = compute_pulls(_reference.counts, _target.counts, *_err)
   return _reference, _target, pulls
 
 

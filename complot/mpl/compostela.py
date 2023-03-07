@@ -221,6 +221,7 @@ mpl.rcParams['lines.linestyle'] = "-"
 mpl.rcParams['font.size'] 		= "12"
 mpl.rcParams['font.family']   = "serif"
 mpl.rcParams['font.serif']    = "Palatino"
+# mpl.rcParams['font.serif']    = "Utopia"
 #font.family         : sans-serif
 #font.style          : normal
 #font.variant        : normal
@@ -247,6 +248,8 @@ mpl.rcParams['font.serif']    = "Palatino"
 #### LaTeX customizations. See http://wiki.scipy.org/Cookbook/Matplotlib/UsingTex
 mpl.rcParams['text.usetex'] = True
 mpl.rcParams['text.latex.preamble'] = "\\usepackage{mathpazo}"
+# mpl.rcParams['text.latex.preamble'] = "\\usepackage{fourier}\\usepackage{chemgreek}\\selectchemgreekmapping{fourier}"
+# mpl.rcParams['text.latex.preamble'] = "\\usepackage{libertine}\\usepackage{inconsolata}\\usepackage[libertine]{newtxmath}"
 
 
 #text.usetex         : False  ## use latex for all text handling. The following fonts
