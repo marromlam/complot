@@ -19,70 +19,6 @@ import textwrap
 # }}}
 
 
-# Class {{{
-
-class CheckFormatCommand(setuptools.Command):
-    '''
-    Check the format of the files in the given directory. This script takes only
-    one argument, the directory to process. A recursive look-up will be done to
-    look for python files in the sub-directories and determine whether the files
-    have the correct format.
-    '''
-    description = 'check the format of the files of a certain type in a given directory'
-
-    user_options = [
-        ('directory=', 'd', 'directory to process'),
-        ('file-type=', 't', 'file type (python|all)'),
-    ]
-
-    def initialize_options(self):
-        '''
-        Running at the begining of the configuration.
-        '''
-        self.directory = None
-        self.file_type = None
-
-    def finalize_options(self):
-        '''
-        Running at the end of the configuration.
-        '''
-        if self.directory is None:
-            raise Exception('Parameter --directory is missing')
-        if not os.path.isdir(self.directory):
-            raise Exception('Not a directory {}'.format(self.directory))
-        if self.file_type is None:
-            raise Exception('Parameter --file-type is missing')
-        if self.file_type not in ('python', 'all'):
-            raise Exception('File type must be either "python" or "all"')
-
-    def run(self):
-        '''
-        Execution of the command action.
-        '''
-        matched_files = []
-        for root, _, files in os.walk(self.directory):
-            for f in files:
-                if self.file_type == 'python' and not f.endswith('.py'):
-                    continue
-                matched_files.append(os.path.join(root, f))
-
-        process = subprocess.Popen(['autopep8', '--diff'] + matched_files,
-                                   stdout=subprocess.PIPE,
-                                   stderr=subprocess.PIPE)
-
-        stdout, stderr = process.communicate()
-
-        if process.returncode < 0:
-            raise RuntimeError('Call to autopep8 exited with error {}\nMessage:\n{}'.format(
-                abs(returncode), stderr))
-
-        if len(stdout):
-            raise RuntimeError(
-                'Found differences for files in directory "{}" with file type "{}"'.format(self.directory, self.file_type))
-
-# }}}
-
-
 # Version {{{
 # Version of the package. Before a new release is made just the version_list
 # must be changed. The options for the fourth tag are "dev", "alpha", "beta"
@@ -158,7 +94,6 @@ def setup_package():
       long_description_content_type = 'text/x-rst',
       platforms=['Linux', 'macOS', 'Windows'],
       keywords='statistics plotting',
-      cmdclass={'check_format': CheckFormatCommand},
       include_package_data=True,
       # package_dir={'complot': 'complot'},
       packages=['complot'],
